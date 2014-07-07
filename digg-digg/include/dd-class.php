@@ -314,6 +314,35 @@ class DD_Twitter extends BaseDD{
     }
 
  	public function constructURL($url, $title,$button, $postId, $lazy, $globalcfg = ''){
+ 		
+ 		
+    //mod start bitly
+    $long_url = $url;
+    $short_url = null;
+    $bitly_key = $globalcfg[DD_GLOBAL_TWITTER_OPTION][DD_GLOBAL_TWITTER_OPTION_BITLY_KEY];
+    if ( !is_null($bitly_key) && strlen($bitly_key) > 0 && ctype_alnum($bitly_key) ) {
+      // alphanumeric keys only
+      // use bitly api to retrieve shortened url
+      $bitly_url = 'https://api-ssl.bitly.com/v3/shorten?access_token='.$bitly_key.'&longUrl='.urlencode($long_url);
+
+      $bitly_object = json_decode(file_get_contents($bitly_url));
+      if ( is_object($bitly_object) && property_exists($bitly_object,'data') &&
+           is_object($bitly_object->data) && property_exists($bitly_object->data,'url') &&
+           is_string($bitly_object->data->url)) {
+        $short_url = $bitly_object->data->url;
+      }
+
+      if (!is_null($short_url)) {
+        // short_url successfully retrieved
+        $this->baseURL = str_replace('data-url=', "data-counturl=\"".$long_url."\" data-url=", $this->baseURL);
+        $url = $short_url;
+      }
+    }
+    /* if successful
+      $url = contains bit.ly representation of passed url
+      and the tweet counter is now counting the full url and not the bit.ly url. Which usually doesnt count properly.
+    */
+    //mod end bitly
     	
  		if($this->isEncodeRequired){
  			$title = rawurlencode($title);
