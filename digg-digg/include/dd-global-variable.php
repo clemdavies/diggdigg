@@ -150,10 +150,17 @@ define('DD_GLOBAL_FACEBOOK_OPTION_DEFAULT_THUMB','dd_global_facebook_option_defa
 define('DD_GLOBAL_FLATTR_OPTION','dd_global_flattr_option');
 define('DD_GLOBAL_FLATTR_OPTION_UID','dd_global_flattr_option_uid');
 
+//mod start bitly
+define('DD_GLOBAL_TWITTER_OPTION_BITLY_KEY', 'dd_global_twitter_option_bitly_key');
+//mod end bitly
+
 global $ddGlobalConfig; 
 $ddGlobalConfig = array(
 	DD_GLOBAL_TWITTER_OPTION => array(
-		DD_GLOBAL_TWITTER_OPTION_SOURCE => DD_EMPTY_VALUE
+		DD_GLOBAL_TWITTER_OPTION_SOURCE => DD_EMPTY_VALUE,
+    //mod start bitly
+    DD_GLOBAL_TWITTER_OPTION_BITLY_KEY => DD_EMPTY_VALUE
+    //mod end bitly
 	),
 	DD_GLOBAL_BUFFER_OPTION => array(
 		DD_GLOBAL_BUFFER_OPTION_SOURCE => DD_EMPTY_VALUE
