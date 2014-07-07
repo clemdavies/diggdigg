@@ -138,6 +138,21 @@ function dd_print_global_form($ddGlobalConfig){
 							        		<p>This user will be @ mentioned in the suggested tweet.</p>
 							        	</td>
 							        </tr>
+                      <!-- //mod start bitly -->
+                      <tr valign="top">
+                        <th scope="row">2.2 Tweet Shortened Urls Bit.ly Generic Access Token</th>
+                        <td>
+                          <input type="text" value="<?php echo $ddGlobalConfig[DD_GLOBAL_TWITTER_OPTION][DD_GLOBAL_TWITTER_OPTION_BITLY_KEY]; ?>" name="<?php echo DD_GLOBAL_TWITTER_OPTION_BITLY_KEY;?>" />
+                          <p>Leave blank to disable. Invalid keys will be ignored when page is rendered.</p>
+                            <ol>
+                              <li><a href='https://bitly.com/a/oauth_apps' target='_blank'>Go here for Generic Acess Token</a></li>
+                              <li>Sign in or create an account</li>
+                              <li>Click the Generate Token button</li>
+                              <li>Copy and paste the token into the text field located above</li>
+                            </ol>
+                        </td>
+                      </tr>
+                      <!-- //mod endbitly -->
 							    </table>
 								
 								<div class="submit">
